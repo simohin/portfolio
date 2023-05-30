@@ -15,8 +15,8 @@ import {
 } from "@mui/material";
 import SettingsIcon from '@mui/icons-material/Settings';
 import React, {useState} from "react";
-import {Language, Theme} from "../../enum";
-import {Dispatch, RootState} from "../../storage/model";
+import {Language, Theme} from "../../../enum";
+import {Dispatch, RootState} from "../../../storage/model";
 import {useDispatch, useSelector} from 'react-redux'
 import {useTranslation} from "react-i18next";
 

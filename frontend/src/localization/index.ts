@@ -28,7 +28,6 @@ i18n.use(initReactI18next).init({
                             },
                             value: {
                                 location: 'Russia, Yekaterinburg',
-                                email: '65sumbox@gmail.com',
                                 work: {
                                     type: 'Remote'
                                 },
@@ -36,7 +35,36 @@ i18n.use(initReactI18next).init({
                             }
                         }
                     }
-                }
+                },
+                experience: {
+                    title: 'Work experience',
+                    content: {
+                        places: {
+                            qiwi: {
+                                title: 'QIWI',
+                                role: 'Product developer',
+                                description: 'Research, analyse, developing backend and frontend',
+                                dateStart: "07.2022",
+                                dateEnd: 'now'
+                            },
+                            premium: {
+                                title: 'Premium IT Solution',
+                                role: 'Senior backend developer',
+                                description: 'Large distributed human resources platform development for PAO Sberbank',
+                                dateStart: "03.2022",
+                                dateEnd: "10.2022"
+                            },
+                            luxoft: {
+                                title: 'Luxoft',
+                                role: 'Java/Kotlin developer',
+                                description: 'Backend development for enterprise clients, business functional research and planning, junior colleagues mentoring, interview participating',
+                                dateStart: "03.2022",
+                                dateEnd: "07.2022"
+                            },
+                        }
+
+                    }
+                },
             }
         },
         RU: {
@@ -62,14 +90,42 @@ i18n.use(initReactI18next).init({
                             },
                             value: {
                                 location: 'Россия, Екатеринбург',
-                                email: '65sumbox@gmail.com',
                                 work: {type: 'Удалённо'},
                                 employment: 'Полный день',
                             }
                         }
 
                     }
-                }
+                },
+                experience: {
+                    title: 'Опыт работы',
+                    content: {
+                        places: {
+                            qiwi: {
+                                title: 'АО "Киви"',
+                                role: 'Разработчик продуктов',
+                                description: 'Исследование, проектирование, разработка backend и frontend приложения. Техническое ревью дизайна, внедрение приложения в инфраструктуру компании вывод до mvp. Кросс-ревью кода с коллегами по команде, исследование арт партнеров и сравнительный анализ для выбора',
+                                dateStart: "07.2022",
+                                dateEnd: 'по настоящее время'
+                            },
+                            premium: {
+                                title: 'Premium IT Solution',
+                                role: 'Старший backend разработчик',
+                                description: 'Разработка бэкхенд крупной распределённой системы кадрового учета для ПАО Сбербанк',
+                                dateStart: "03.2022",
+                                dateEnd: "10.2022"
+                            },
+                            luxoft: {
+                                title: 'Luxoft',
+                                role: 'Java/Kotlin разработчик',
+                                description: 'Разработка бэкенда приложений, проектирование бизнес функций и планирование внедрений, менторство младших сотрудников и участие в интервью',
+                                dateStart: "03.2022",
+                                dateEnd: "07.2022"
+                            },
+                        }
+
+                    }
+                },
             }
         }
     },

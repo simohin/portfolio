@@ -1,8 +1,8 @@
 import {
     Box,
+    Divider,
     Grid,
     Link,
-    Paper,
     Table,
     TableBody,
     TableCell,
@@ -12,7 +12,7 @@ import {
     useMediaQuery,
     useTheme
 } from "@mui/material";
-import portrait from '../../media/image/hero-section-photo.jpeg'
+import portrait from '../../../media/image/hero-section-photo.jpeg'
 import React, {ReactNode} from "react";
 import moment from 'moment';
 import {useTranslation} from "react-i18next";
@@ -60,36 +60,39 @@ export const HeroSection = () => {
         createRow(t('hero.bio.field.name.age'), moment().diff(moment("06.09.1995", "DD.MM.YYYY"), 'years').toString()),
         createRow(t('hero.bio.field.name.location'), t('hero.bio.field.value.location')),
         createRow(t('hero.bio.field.name.email'), <Link
-            href={"mailto:" + t('hero.bio.field.value.email')}>65sumbox@gmail.com</Link>),
+            href={"mailto:65sumbox@gmail.com"}>65sumbox@gmail.com</Link>),
         createRow(t('hero.bio.field.name.work.type'), t('hero.bio.field.value.work.type')),
         createRow(t('hero.bio.field.name.employment'), t('hero.bio.field.value.employment'))
     ]
 
     return (
-        <Grid sx={HeroSx}>
-            <Box sx={HeroInfoSx}>
-                <Box sx={HeroTextSx}>
-                    <Typography variant={'h2'}>{t('hero.title')}</Typography>
+        <>
+            <Grid sx={HeroSx}>
+                <Box sx={HeroInfoSx}>
+                    <Box sx={HeroTextSx}>
+                        <Typography variant={'h2'}>{t('hero.title')}</Typography>
+                    </Box>
+                    <TableContainer component={Box}>
+                        <Table sx={{width: '100%'}} aria-label="simple table">
+                            <TableBody>
+                                {rows.map((row) => (
+                                    <TableRow key={row.key} sx={{'&:last-child td, &:last-child th': {border: 0}}}>
+                                        <TableCell component="th" scope="row">{row.key}</TableCell>
+                                        <TableCell align={'right'}>{row.value}</TableCell>
+                                    </TableRow>
+                                ))}
+                            </TableBody>
+                        </Table>
+                    </TableContainer>
                 </Box>
-                <TableContainer component={Paper}>
-                    <Table sx={{width: '100%'}} aria-label="simple table">
-                        <TableBody>
-                            {rows.map((row) => (
-                                <TableRow key={row.key} sx={{'&:last-child td, &:last-child th': {border: 0}}}>
-                                    <TableCell component="th" scope="row">{row.key}</TableCell>
-                                    <TableCell align={'right'}>{row.value}</TableCell>
-                                </TableRow>
-                            ))}
-                        </TableBody>
-                    </Table>
-                </TableContainer>
-            </Box>
-            <img style={{
-                display: isMd ? 'flex' : 'none',
-                height: '100%',
-                maxHeight: '60vh',
-                maxWidth: '600px'
-            }} src={portrait} alt='portrait'/>
-        </Grid>
+                <img style={{
+                    display: isMd ? 'flex' : 'none',
+                    height: '100%',
+                    maxHeight: '60vh',
+                    maxWidth: '600px'
+                }} src={portrait} alt='portrait'/>
+            </Grid>
+            <Divider/>
+        </>
     )
 }
