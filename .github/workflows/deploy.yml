@@ -12,10 +12,11 @@ jobs:
         uses: actions/checkout@v3
       - name: setup-fly
         uses: superfly/flyctl-actions/setup-flyctl@master
-      - name: secret
-        env:
-          FLY_API_TOKEN: ${{ secrets.FLY_API_TOKEN }}
       - name: frontend
         run: flyctl deploy -c fly.frontend.toml --dockerfile Dockerfile.frontend --ignorefile .dockerignore.frontend --remote-only
+        env:
+          FLY_API_TOKEN: ${{ secrets.FLY_API_TOKEN }}
       - name: backend
         run: flyctl deploy -c fly.backend.toml --dockerfile Dockerfile.backend --ignorefile .dockerignore.backend --remote-only
+        env:
+          FLY_API_TOKEN: ${{ secrets.FLY_API_TOKEN }}
