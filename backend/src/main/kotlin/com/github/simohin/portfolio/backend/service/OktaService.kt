@@ -9,7 +9,6 @@ import org.springframework.http.MediaType
 import org.springframework.stereotype.Service
 import org.springframework.web.reactive.function.BodyInserters
 import org.springframework.web.reactive.function.client.WebClient
-import org.springframework.web.util.DefaultUriBuilderFactory
 import reactor.core.publisher.Mono
 
 @Service
@@ -23,7 +22,6 @@ class OktaService(
     private val client = clientBuilder.baseUrl(oktaClientProperties.orgUrl).build()
 
     fun getAuthUrl(provider: AuthProvider, redirectUri: String) = Mono.fromCallable {
-
         val params = mutableMapOf(
             "client_id" to oktaOAuth2Properties.clientId,
             "redirect_uri" to redirectUri,
@@ -33,16 +31,10 @@ class OktaService(
             "state" to redirectUri,
         ).apply {
             idpProperties.ids[provider]?.let { this["idp"] = it }
-        }
+        }.map { "${it.key}=${it.value}" }
+            .joinToString("&")
 
-        DefaultUriBuilderFactory().builder()
-            .path("${oktaClientProperties.orgUrl}/oauth2/v1/authorize")
-            .apply {
-                params.forEach {
-                    queryParam(it.key, it.value)
-                }
-            }.build()
-            .toString()
+        "${oktaClientProperties.orgUrl}/oauth2/v1/authorize?$params"
     }
 
     fun getToken(code: String, redirectUri: String) = client.post()

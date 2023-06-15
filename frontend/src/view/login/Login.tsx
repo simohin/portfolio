@@ -13,7 +13,7 @@ export const Login = () => {
 
     const handleClick = (provider: AuthProvider) => {
         getAuthUrl(provider, `${window.location.origin}/login/callback`)
-            .then(url => window.location.href = url)
+            .then(url => window.location.replace(url))
     }
 
     return (

@@ -129,7 +129,9 @@ const SettingsWrapper = () => {
 export const Header: React.FC<HeaderProps> = (props) => (
     <Toolbar component='header' sx={ToolbarSx}>
         <Typography margin={'16px'} variant={'h5'}>
-            <Link onClick={() => window.location.replace('/')}>
+            <Link sx={{
+                textDecoration: 'none'
+            }} onClick={() => window.location.replace('/')}>
                 {props.title}
             </Link>
         </Typography>
