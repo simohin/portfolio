@@ -4,6 +4,7 @@ COPY package.json ./
 COPY yarn.lock ./
 RUN yarn install --frozen-lockfile
 COPY . .
+RUN echo "REACT_APP_ENV=PROD" > .env
 RUN yarn build
 
 FROM nginx:alpine AS server

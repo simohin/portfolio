@@ -7,6 +7,23 @@ import {Theme} from "./enum";
 import {DarkTheme, LightTheme} from "./theme";
 import {AppGlobalStyle} from './AppGlobalStyle';
 import './localization/index'
+import {createBrowserRouter, RouterProvider} from "react-router-dom";
+import {Callback, Login} from "./view/login";
+
+const router = createBrowserRouter([
+    {
+        path: "/",
+        element: <Main/>,
+    },
+    {
+        path: "/login",
+        element: <Login/>,
+    },
+    {
+        path: "/login/callback",
+        element: <Callback/>,
+    },
+]);
 
 const App = () => {
 
@@ -15,7 +32,7 @@ const App = () => {
     return (
         <ThemeProvider theme={themeState.current === Theme.DARK ? DarkTheme : LightTheme}>
             <AppGlobalStyle/>
-            <Main/>
+            <RouterProvider router={router}/>
         </ThemeProvider>
     )
 }

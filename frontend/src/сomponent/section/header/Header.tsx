@@ -1,5 +1,6 @@
 import {
     Box,
+    Button,
     Drawer,
     FormControl,
     FormControlLabel,
@@ -44,11 +45,12 @@ const Settings: React.FC<SettingsProps> = (props) => {
 
     const dispatch = useDispatch<Dispatch>()
     const {t} = useTranslation();
+    const authState = useSelector((state: RootState) => state.auth)
     const themeState = useSelector((state: RootState) => state.theme)
-
     const languageState = useSelector((state: RootState) => state.language)
     const languages = Object.keys(Language)
 
+    let isAuthenticated = authState?.isAuthenticated === true
     return (
         <Box
             sx={{
@@ -78,6 +80,11 @@ const Settings: React.FC<SettingsProps> = (props) => {
                         checked={themeState.current === Theme.DARK}
                         onChange={() => dispatch.theme.setTheme(themeState.current === Theme.DARK ? Theme.LIGHT : Theme.DARK)}/>}
                 label={t('header.field.label.theme')}/>
+            <Button
+                onClick={() => isAuthenticated ? dispatch.auth.logout() : window.location.replace('/login')}
+                variant='outlined'>
+                {isAuthenticated ? t('header.button.logout.text') : t('header.button.login.text')}
+            </Button>
         </Box>)
 }
 

@@ -11,6 +11,10 @@ i18n.use(initReactI18next).init({
                         label: {
                             theme: 'Dark theme'
                         }
+                    },
+                    button: {
+                        login: {text: 'Login'},
+                        logout: {text: 'Logout'}
                     }
                 },
                 hero: {
@@ -65,6 +69,10 @@ i18n.use(initReactI18next).init({
 
                     }
                 },
+                login: {
+                    title: 'Please, login with one of this services',
+                    button: {prefix: 'Continue with'}
+                },
             }
         },
         RU: {
@@ -75,6 +83,10 @@ i18n.use(initReactI18next).init({
                         label: {
                             theme: 'Тёмная тема'
                         }
+                    },
+                    button: {
+                        login: {text: 'Войти'},
+                        logout: {text: 'Выйти'}
                     }
                 },
                 hero: {
@@ -125,6 +137,10 @@ i18n.use(initReactI18next).init({
                         }
 
                     }
+                },
+                login: {
+                    title: 'Войдите с одним из сервисов ниже',
+                    button: {prefix: 'Войти с помощью'}
                 },
             }
         }

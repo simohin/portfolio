@@ -13,13 +13,13 @@ export const language = createModel<RootModel>()({
     } as LanguageState,
     reducers: {
         set(state, payload: LanguageState) {
-            i18n.changeLanguage(payload.current.toString())
             return {...state, ...payload}
         }
     },
     effects: (dispatch) => ({
         setLanguage(newLanguage: Language) {
-            dispatch.language.set({current: newLanguage} as LanguageState)
+            i18n.changeLanguage(newLanguage.toString())
+                .then(() => dispatch.language.set({current: newLanguage} as LanguageState))
         },
     }),
 });

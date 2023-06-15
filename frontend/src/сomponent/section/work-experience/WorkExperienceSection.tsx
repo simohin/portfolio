@@ -57,6 +57,7 @@ const ExperienceItemOppositeContent: React.FC<ExperienceItemOppositeContentProps
 }
 
 interface ExperienceItem {
+    key: string,
     content: ReactNode,
     oppositeContent: ReactNode,
 }
@@ -70,6 +71,7 @@ export const WorkExperienceSection = () => {
 
     const experience: ExperienceItem[] = ['qiwi', 'premium', 'luxoft'].map((item: string) => {
         return {
+            key: item,
             content: <ExperienceItemContent
                 title={`experience.content.places.${item}.title`}
                 dateStart={`experience.content.places.${item}.dateStart`}
@@ -105,7 +107,7 @@ export const WorkExperienceSection = () => {
             <Box>
                 <Timeline sx={{display: 'flex', justifyContent: 'space-around', alignItems: 'center'}}>
                     {experience.map(item => (
-                        <TimelineItem sx={{width: '100%'}}>
+                        <TimelineItem key={item.key} sx={{width: '100%'}}>
                             <TimelineContent>{item.content}</TimelineContent>
                             <TimelineSeparator>
                                 <TimelineDot/>
