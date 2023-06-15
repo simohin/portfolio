@@ -3,12 +3,13 @@ import {Main} from "./view/main";
 import {ThemeProvider} from "@mui/material";
 import {Provider, useSelector} from "react-redux";
 import {RootState, store} from "./storage/model";
-import {Theme} from "./enum";
+import {Language, Theme} from "./enum";
 import {DarkTheme, LightTheme} from "./theme";
 import {AppGlobalStyle} from './AppGlobalStyle';
 import './localization/index'
 import {createBrowserRouter, RouterProvider} from "react-router-dom";
 import {Callback, Login} from "./view/login";
+import i18n from "i18next";
 
 const router = createBrowserRouter([
     {
@@ -28,6 +29,8 @@ const router = createBrowserRouter([
 const App = () => {
 
     const themeState = useSelector((state: RootState) => state.theme)
+    const languageState = useSelector((state: RootState) => state.language)
+    i18n.changeLanguage(languageState?.current || Language.EN).then(() => {})
 
     return (
         <ThemeProvider theme={themeState.current === Theme.DARK ? DarkTheme : LightTheme}>
