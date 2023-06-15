@@ -1,8 +1,8 @@
 import {PageWrapper, ScreenWrapper} from "../../сomponent/section";
 import {useTranslation} from "react-i18next";
-import {Box, Button, ButtonGroup, Typography} from "@mui/material";
+import {Backdrop, Box, Button, ButtonGroup, CircularProgress, Typography} from "@mui/material";
 import {Header} from "../../сomponent/section/header";
-import React from "react";
+import React, {useState} from "react";
 import {AuthProvider} from "../../enum";
 import {getAuthUrl} from "../../api";
 import {AnonymousOnly} from "../../сomponent/auth/AnonymousOnly";
@@ -11,13 +11,23 @@ export const Login = () => {
 
     const {t} = useTranslation();
 
+    const [backdropOpen, setBackdropOpen] = useState(false)
+
     const handleClick = (provider: AuthProvider) => {
+        setBackdropOpen(true)
         getAuthUrl(provider, `${window.location.origin}/login/callback`)
             .then(url => window.location.replace(url))
+            .catch(e => {
+                console.log(e)
+                setBackdropOpen(false)
+            })
     }
 
     return (
         <AnonymousOnly>
+            <Backdrop open={backdropOpen}>
+                <CircularProgress/>
+            </Backdrop>
             <PageWrapper>
                 <ScreenWrapper>
                     <Header title={t('header.title').toString()}/>
