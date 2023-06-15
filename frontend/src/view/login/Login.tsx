@@ -26,7 +26,8 @@ export const Login = () => {
                         flexGrow: 1,
                         flexDirection: 'column',
                         justifyContent: 'center',
-                        alignItems: 'center'
+                        alignItems: 'center',
+                        textAlign: 'center'
                     }}>
                         <Typography margin={'16px'} variant={'h2'}>{t('login.title')}</Typography>
                         <ButtonGroup
