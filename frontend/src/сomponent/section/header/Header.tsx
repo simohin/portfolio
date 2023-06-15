@@ -66,7 +66,6 @@ const Settings: React.FC<SettingsProps> = (props) => {
                 value={languageState.current}
                 onChange={(e: SelectChangeEvent) => dispatch.language.setLanguage(e.target.value as Language)}
                 sx={LanguageSelectSx}
-                defaultValue={Language.EN}
             >
                 {languages.map(option => (
                     <MenuItem value={option} key={option}>
