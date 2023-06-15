@@ -21,7 +21,7 @@ export const Callback = () => {
                         justifyContent: 'center',
                         alignItems: 'center'
                     }}>
-                        <CircularProgress/>
+                        <CircularProgress color={'inherit'}/>
                     </Box>
                 </ScreenWrapper>
             </PageWrapper>

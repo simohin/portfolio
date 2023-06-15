@@ -25,8 +25,8 @@ export const Login = () => {
 
     return (
         <AnonymousOnly>
-            <Backdrop open={backdropOpen}>
-                <CircularProgress/>
+            <Backdrop color={'inherit'} open={backdropOpen}>
+                <CircularProgress color={'inherit'}/>
             </Backdrop>
             <PageWrapper>
                 <ScreenWrapper>
