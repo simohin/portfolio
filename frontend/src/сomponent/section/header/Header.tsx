@@ -4,6 +4,7 @@ import {
     Drawer,
     FormControl,
     FormControlLabel,
+    Link,
     MenuItem,
     Select,
     SelectChangeEvent,
@@ -127,7 +128,11 @@ const SettingsWrapper = () => {
 
 export const Header: React.FC<HeaderProps> = (props) => (
     <Toolbar component='header' sx={ToolbarSx}>
-        <Typography margin={'16px'} variant={'h5'}>{props.title}</Typography>
+        <Typography margin={'16px'} variant={'h5'}>
+            <Link onClick={() => window.location.replace('/')}>
+                {props.title}
+            </Link>
+        </Typography>
         <SettingsWrapper/>
     </Toolbar>
 )
