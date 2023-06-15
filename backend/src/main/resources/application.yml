@@ -1,0 +1,25 @@
+db.postgresql.url: postgresql://${DB_URL:localhost}:5432/${DB_NAME:portfolio_app}?sslmode=disable
+db.username: ${DB_USER:portfolio_app}
+db.password: ${DB_PASS:password}
+spring:
+  r2dbc:
+    username: ${db.username}
+    password: ${db.password}
+    url: r2dbc:${db.postgresql.url}
+  flyway:
+    url: jdbc:${db.postgresql.url}
+    locations: classpath:db/migration
+    user: ${spring.r2dbc.username}
+    password: ${spring.r2dbc.password}
+management.endpoints.web.exposure.include: health,metrics
+okta:
+  oauth2:
+    client-id: 0oa9ygxin6r0zI1Dm5d7
+    client-secret: ${OKTA_CLIENT_SECRET:client-secret}
+    issuer: ${okta.client.org-url}/oauth2/default
+  client:
+    org-url: https://dev-92479701.okta.com
+    token: ${OKTA_API_TOKEN:token}
+idp:
+  ids:
+    GOOGLE: ${GOOGLE_IDP_ID:id}
