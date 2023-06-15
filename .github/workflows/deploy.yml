@@ -4,8 +4,8 @@ on:
     branches:
       - main
 jobs:
-  deploy-frontend:
-    name: Deploy frontend
+  deploy:
+    name: Deploy
     runs-on: ubuntu-latest
     steps:
       - name: checkout
@@ -13,10 +13,10 @@ jobs:
       - name: setup-fly
         uses: superfly/flyctl-actions/setup-flyctl@master
       - name: frontend
-        run: flyctl deploy -c frontend/fly.toml --remote-only
+        run: flyctl deploy -c frontend/fly.toml --dockerfile frontend/Dockerfile --remote-only
         env:
           FLY_API_TOKEN: ${{ secrets.FLY_API_TOKEN }}
       - name: backend
-        run: flyctl deploy -c backend/fly.toml --remote-only
+        run: flyctl deploy -c backend/fly.toml --dockerfile backend/Dockerfile --remote-only
         env:
           FLY_API_TOKEN: ${{ secrets.FLY_API_TOKEN }}
