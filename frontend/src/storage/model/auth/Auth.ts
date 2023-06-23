@@ -1,10 +1,7 @@
 import {createModel} from "@rematch/core";
 import {RootModel} from "../index";
+import {AuthState} from "../../../types/auth";
 
-export type AuthState = {
-    isAuthenticated: boolean,
-    token: string
-}
 
 export const auth = createModel<RootModel>()({
     state: {

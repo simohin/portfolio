@@ -10,6 +10,8 @@ import './localization/index'
 import {createBrowserRouter, RouterProvider} from "react-router-dom";
 import {Callback, Login} from "./view/login";
 import i18n from "i18next";
+import {Admin} from "./view/admin/Admin";
+import 'moment/locale/ru';
 
 const router = createBrowserRouter([
     {
@@ -21,6 +23,10 @@ const router = createBrowserRouter([
         element: <Login/>,
     },
     {
+        path: "/admin",
+        element: <Admin/>,
+    },
+    {
         path: "/login/callback",
         element: <Callback/>,
     },
@@ -30,7 +36,8 @@ const App = () => {
 
     const themeState = useSelector((state: RootState) => state.theme)
     const languageState = useSelector((state: RootState) => state.language)
-    i18n.changeLanguage(languageState?.current || Language.EN).then(() => {})
+    i18n.changeLanguage(languageState?.current || Language.EN).then(() => {
+    })
 
     return (
         <ThemeProvider theme={themeState.current === Theme.DARK ? DarkTheme : LightTheme}>

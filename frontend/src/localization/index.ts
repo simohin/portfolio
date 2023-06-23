@@ -40,6 +40,22 @@ i18n.use(initReactI18next).init({
                         }
                     }
                 },
+                admin: {
+                    tab: {experience: 'Experience'},
+                    panel: {
+                        experience: {
+                            column: {
+                                name: {
+                                    title: 'Company',
+                                    dateStart: 'Date start',
+                                    dateEnd: 'Date end',
+                                    position: 'Position',
+                                    description: 'Description'
+                                }
+                            }
+                        }
+                    }
+                },
                 experience: {
                     title: 'Work experience',
                     content: {
@@ -123,7 +139,7 @@ i18n.use(initReactI18next).init({
                             premium: {
                                 title: 'Premium IT Solution',
                                 role: 'Старший backend разработчик',
-                                description: 'Разработка бэкхенд крупной распределённой системы кадрового учета для ПАО Сбербанк',
+                                description: 'Разработка бэкенда крупной распределённой системы кадрового учета для ПАО Сбербанк',
                                 dateStart: "03.2022",
                                 dateEnd: "10.2022"
                             },
@@ -136,6 +152,22 @@ i18n.use(initReactI18next).init({
                             },
                         }
 
+                    }
+                },
+                admin: {
+                    tab: {experience: 'Опыт'},
+                    panel: {
+                        experience: {
+                            column: {
+                                name: {
+                                    title: 'Компания',
+                                    dateStart: 'Дата начала',
+                                    dateEnd: 'Дата завершения',
+                                    position: 'Должность',
+                                    description: 'Описание'
+                                }
+                            }
+                        }
                     }
                 },
                 login: {

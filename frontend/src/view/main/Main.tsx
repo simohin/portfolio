@@ -9,7 +9,7 @@ export const Main = () => {
 
     return (
         <PageWrapper>
-            <ScreenWrapper>
+            <ScreenWrapper sx={{justifyContent: 'center'}}>
                 <Header title={t('header.title').toString()}/>
                 <HeroSection/>
             </ScreenWrapper>

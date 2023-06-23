@@ -1,10 +1,7 @@
 import {createModel} from "@rematch/core";
 import {RootModel} from "../index";
 import {Language} from "../../../enum";
-
-export type LanguageState = {
-    current: Language
-}
+import {LanguageState} from "../../../types/language";
 
 export const language = createModel<RootModel>()({
     state: {

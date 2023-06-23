@@ -3,6 +3,7 @@ import {Box} from "@mui/material";
 
 interface Props {
     children: ReactNode
+    sx?: any
 }
 
 const PageSx = {
@@ -12,16 +13,21 @@ const PageSx = {
 const ScreenSx = {
     ...PageSx,
     minHeight: '100vh',
-    justifyContent: 'center'
 }
 
 export const PageWrapper: React.FC<Props> = (props) => (
-    <Box sx={PageSx}>
+    <Box sx={{
+        ...PageSx,
+        ...props.sx
+    }}>
         {props.children}
     </Box>
 )
 export const ScreenWrapper: React.FC<Props> = (props) => (
-    <Box sx={ScreenSx}>
+    <Box sx={{
+        ...ScreenSx,
+        ...props.sx
+    }}>
         {props.children}
     </Box>
 )

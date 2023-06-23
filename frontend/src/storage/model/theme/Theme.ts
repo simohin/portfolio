@@ -1,10 +1,7 @@
 import {Theme} from "../../../enum";
 import {createModel} from "@rematch/core";
 import {RootModel} from "../index";
-
-export type ThemeState = {
-    current: Theme
-}
+import {ThemeState} from "../../../types/theme";
 
 export const theme = createModel<RootModel>()({
     state: {

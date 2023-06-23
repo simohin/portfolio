@@ -5,17 +5,20 @@ import {auth} from "./auth/Auth";
 import {ExtraModelsFromLoading} from '@rematch/loading'
 import storage from 'redux-persist/lib/storage';
 import persistPlugin from "@rematch/persist";
+import {experience} from "./experience/Experience";
 
 export interface RootModel extends Models<RootModel> {
     language: typeof language
     theme: typeof theme,
-    auth: typeof auth
+    auth: typeof auth,
+    experience: typeof experience
 }
 
 export const models: RootModel = {
     language: language,
     theme: theme,
-    auth: auth
+    auth: auth,
+    experience: experience
 }
 
 export const store = init<RootModel, ExtraModelsFromLoading<RootModel>>({
