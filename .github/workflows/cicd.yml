@@ -33,4 +33,4 @@ jobs:
           push: true
           tags: |
             ${{ github.REPOSITORY }}-backend:latest
-            ${{ github.REPOSITORY }}-backend:${{ GITHUB_SHA }}
+            ${{ github.REPOSITORY }}-backend:${{ github.SHA }}
