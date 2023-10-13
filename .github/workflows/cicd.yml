@@ -34,3 +34,14 @@ jobs:
           tags: |
             ${{ github.REPOSITORY }}-backend:latest
             ${{ github.REPOSITORY }}-backend:${{ github.SHA }}
+  deploy:
+    name: Deploy
+    needs: [ build ]
+    runs-on: ubuntu-latest
+    steps:
+      - name: Set the Kubernetes context
+        uses: azure/k8s-set-context@v2
+        with:
+          method: service-account
+          k8s-url: https://188.226.4.215:16443
+          k8s-secret: ${{ secrets.KUBERNETES_SECRET }}
