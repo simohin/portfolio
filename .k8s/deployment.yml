@@ -1,0 +1,45 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: portfolio-backend
+spec:
+  selector:
+    matchLabels:
+      app: portfolio-backend
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: portfolio-backend
+    spec:
+      containers:
+        - image: simohin/portfolio-backend
+          name: portfolio-backend
+          imagePullPolicy: IfNotPresent
+          ports:
+            - containerPort: 8080
+          envFrom:
+            - secretRef:
+                name: portfolio
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: portfolio
+spec:
+  selector:
+    matchLabels:
+      app: portfolio
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: portfolio
+    spec:
+      containers:
+        - image: simohin/portfolio-frontend
+          name: portfolio
+          imagePullPolicy: IfNotPresent
+          ports:
+            - containerPort: 3000

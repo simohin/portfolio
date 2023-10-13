@@ -1,0 +1,31 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: portfolio-ingress
+spec:
+  tls:
+    - hosts:
+        - portfolio-backend.simohin.ru
+        - portfolio.simohin.ru
+      secretName: simohin.ru
+  rules:
+    - host: portfolio.simohin.ru
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: portfolio
+                port:
+                  number: 3000
+    - host: portfolio-backend.simohin.ru
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: portfolio-backend
+                port:
+                  number: 8080
