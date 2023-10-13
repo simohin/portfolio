@@ -43,7 +43,7 @@ jobs:
         uses: azure/k8s-set-context@v2
         with:
           method: service-account
-          k8s-url: https://192.168.0.62:16443
+          k8s-url: https://188.226.4.215:16443
           k8s-secret: ${{ secrets.KUBERNETES_SECRET }}
 
       - name: Checkout source code
