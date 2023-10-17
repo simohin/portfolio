@@ -94,46 +94,45 @@ const SettingsWrapper = () => {
     const isMd = useMediaQuery(theme.breakpoints.up('md'))
     const [isDrawerOpen, setIsDrawerOpen] = useState(false);
 
-
     return (
-        <>
-            <Box sx={{display: 'flex', justifyContent: 'center'}}>
-                <FormControl fullWidth sx={{
-                    flexDirection: 'row',
-                    gap: '16px'
-                }}>
-                    <ToggleButton
-                        value={'drawer-toggle'}
-                        selected={isDrawerOpen}
-                        onChange={() => setIsDrawerOpen(!isDrawerOpen)}
-                        sx={{
-                            display: isMd ? 'none' : 'flex',
-                        }}>
-                        <SettingsIcon/>
-                    </ToggleButton>
-                    <Drawer
-                        anchor={'right'}
-                        open={isDrawerOpen}
-                        onClose={() => setIsDrawerOpen(false)}
-                    >
-                        <Settings flexDirection={'column'} display='flex'/>
-                    </Drawer>
-                    <Settings display={isMd ? 'flex' : 'none'}/>
-                </FormControl>
-            </Box>
-        </>
+        <Box sx={{display: 'flex', justifyContent: 'center'}}>
+            <FormControl fullWidth sx={{
+                flexDirection: 'row',
+                gap: '16px'
+            }}>
+                <ToggleButton
+                    value={'drawer-toggle'}
+                    selected={isDrawerOpen}
+                    onChange={() => setIsDrawerOpen(!isDrawerOpen)}
+                    sx={{
+                        display: isMd ? 'none' : 'flex',
+                    }}>
+                    <SettingsIcon/>
+                </ToggleButton>
+                <Drawer
+                    anchor={'right'}
+                    open={isDrawerOpen}
+                    onClose={() => setIsDrawerOpen(false)}
+                >
+                    <Settings flexDirection={'column'} display='flex'/>
+                </Drawer>
+                <Settings display={isMd ? 'flex' : 'none'}/>
+            </FormControl>
+        </Box>
     )
 }
 
-export const Header: React.FC<HeaderProps> = (props) => (
-    <Toolbar component='header' sx={ToolbarSx}>
-        <Typography margin={'16px'} variant={'h5'}>
-            <Box sx={{
-                cursor: 'pointer'
-            }} onClick={() => window.location.replace('/')}>
-                {props.title}
-            </Box>
-        </Typography>
-        <SettingsWrapper/>
-    </Toolbar>
-)
+export const Header: React.FC<HeaderProps> = (props) => {
+    return (
+        <Toolbar sx={ToolbarSx}>
+            <Typography margin={'16px'} variant={'h5'}>
+                <Box sx={{
+                    cursor: 'pointer'
+                }} onClick={() => window.location.replace('/')}>
+                    {props.title}
+                </Box>
+            </Typography>
+            <SettingsWrapper/>
+        </Toolbar>
+    )
+}

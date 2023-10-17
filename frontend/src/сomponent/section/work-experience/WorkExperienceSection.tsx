@@ -107,7 +107,6 @@ export const WorkExperienceSection = () => {
                     ))}
                 </Timeline>
             </Box>
-
         </ScreenWrapper>
     )
 }

@@ -1,10 +1,9 @@
 import React, {useState} from "react";
-import {PageWrapper, ScreenWrapper} from "../../сomponent/section";
-import {Header} from "../../сomponent/section/header";
 import {useTranslation} from "react-i18next";
 import {Box, Tab, Tabs, useMediaQuery, useTheme} from "@mui/material";
 import {TabContext, TabPanel} from "@mui/lab";
 import {Experience} from "../../сomponent/admin/experience";
+import {BaseLayout} from "../../layout";
 
 export const Admin = () => {
 
@@ -24,28 +23,25 @@ export const Admin = () => {
     }
 
     return (
-        <PageWrapper>
-            <Header title={t('header.title').toString()}/>
-            <ScreenWrapper>
-                <TabContext value={tabsValue}>
-                    <Box sx={{
-                        display: 'flex',
-                        flexDirection: isMd ? 'row' : 'column',
-                    }}>
-                        <Tabs
-                            orientation={isMd ? 'vertical' : 'horizontal'}
-                            variant={'fullWidth'}
-                            value={tabsValue}
-                            onChange={handleTabsChange}
-                        >
-                            <Tab value={'experience'} label={t('admin.tab.experience')}/>
-                        </Tabs>
-                        <TabPanel sx={tabPanelSx} value={'experience'}>
-                            <Experience/>
-                        </TabPanel>
-                    </Box>
-                </TabContext>
-            </ScreenWrapper>
-        </PageWrapper>
+        <BaseLayout>
+            <TabContext value={tabsValue}>
+                <Box sx={{
+                    display: 'flex',
+                    flexDirection: isMd ? 'row' : 'column',
+                }}>
+                    <Tabs
+                        orientation={isMd ? 'vertical' : 'horizontal'}
+                        variant={'fullWidth'}
+                        value={tabsValue}
+                        onChange={handleTabsChange}
+                    >
+                        <Tab value={'experience'} label={t('admin.tab.experience')}/>
+                    </Tabs>
+                    <TabPanel sx={tabPanelSx} value={'experience'}>
+                        <Experience/>
+                    </TabPanel>
+                </Box>
+            </TabContext>
+        </BaseLayout>
     )
 }

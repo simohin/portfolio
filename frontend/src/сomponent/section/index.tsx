@@ -1,5 +1,5 @@
 import React, {ReactNode} from "react";
-import {Box} from "@mui/material";
+import {Box, Divider} from "@mui/material";
 
 interface Props {
     children: ReactNode
@@ -24,10 +24,13 @@ export const PageWrapper: React.FC<Props> = (props) => (
     </Box>
 )
 export const ScreenWrapper: React.FC<Props> = (props) => (
-    <Box sx={{
-        ...ScreenSx,
-        ...props.sx
-    }}>
-        {props.children}
-    </Box>
+    <>
+        <Box sx={{
+            ...ScreenSx,
+            ...props.sx
+        }}>
+            {props.children}
+        </Box>
+        <Divider/>
+    </>
 )
