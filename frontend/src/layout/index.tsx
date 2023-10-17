@@ -1,6 +1,6 @@
 import React, {ReactNode} from "react";
 import {Header} from "../сomponent/section/header";
-import {SubHeader} from "../сomponent/subheader/SubHeader";
+import {SubHeader} from "../сomponent/section/subheader/SubHeader";
 import {useTranslation} from "react-i18next";
 import {ScreenWrapper} from "../сomponent/section";
 import {Box} from "@mui/material";
