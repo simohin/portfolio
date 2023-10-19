@@ -52,6 +52,7 @@ jobs:
       - name: Deploy to the Kubernetes cluster
         uses: azure/k8s-deploy@v1
         with:
+          force: true
           action: deploy
           namespace: default
           strategy: basic
