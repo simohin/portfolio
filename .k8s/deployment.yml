@@ -14,7 +14,7 @@ spec:
         app: portfolio-backend
     spec:
       containers:
-        - image: simohin/portfolio-backend
+        - image: simohin/portfolio-backend:latest
           name: portfolio-backend
           imagePullPolicy: Always
           ports:
@@ -38,7 +38,7 @@ spec:
         app: portfolio
     spec:
       containers:
-        - image: simohin/portfolio-frontend
+        - image: simohin/portfolio-frontend:latest
           name: portfolio
           imagePullPolicy: Always
           ports:

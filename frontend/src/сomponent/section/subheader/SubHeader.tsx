@@ -1,16 +1,7 @@
-import {
-    BottomNavigation,
-    BottomNavigationAction,
-    Box,
-    Drawer,
-    ToggleButton,
-    Toolbar,
-    useMediaQuery,
-    useTheme
-} from "@mui/material";
+import {Box, Drawer, Tab, Tabs, ToggleButton, Toolbar, useMediaQuery, useTheme} from "@mui/material";
 import {useSelector} from "react-redux";
 import {RootState} from "../../../storage/model";
-import React, {useState} from "react";
+import React, {useEffect, useState} from "react";
 import ReorderIcon from '@mui/icons-material/Reorder';
 
 const ToolbarSx = {
@@ -20,34 +11,26 @@ const ToolbarSx = {
     padding: '8px',
 }
 
-type Item = {
+export type Item = {
     id: number,
     name: string,
-    link: string
 }
 
-const items: Item[] = [
-    {
-        id: 0,
-        name: "Item 1",
-        link: "#",
-    },
-    {
-        id: 1,
-        name: "Item 2",
-        link: "#",
-    },
-    {
-        id: 2,
-        name: "Item 3",
-        link: "#",
-    }
-]
-type Props = {}
+
+type Props = {
+    tabs?: Item[]
+    handleActiveTab?: (id: number) => void
+}
 
 type MenuProps = {
-    display: string,
+    display?: string
     flexDirection?: string
+    tabs?: Item[]
+    handleActiveTab?: (id: number) => void
+}
+
+const defaultHandleActiveTab = (id: number) => {
+    console.log("Handled tab id: " + id)
 }
 
 const Menu: React.FC<MenuProps> = (props) => {
@@ -55,25 +38,29 @@ const Menu: React.FC<MenuProps> = (props) => {
     const theme = useTheme()
     const isMd = useMediaQuery(theme.breakpoints.up('md'))
 
+    const items = props.tabs || []
+    const handleActiveTab: (id: number) => void = props.handleActiveTab || defaultHandleActiveTab
+
+    useEffect(() => handleActiveTab(activeTab), [activeTab, handleActiveTab])
+
     return (
-        <BottomNavigation
-            showLabels
-            value={activeTab}
+        <Tabs
+            orientation={isMd ? 'horizontal' : 'vertical'}
             sx={{
-                display: props.display,
-                flexDirection: props.flexDirection || 'row',
+                display: props.display || 'flex',
                 gap: '32px',
                 bgcolor: 'transparent'
             }}
+            value={activeTab}
             onChange={(event, newValue: number) => {
                 setActiveTab(newValue);
-                window.location.replace(items[newValue].link)
             }}
+            aria-label="basic tabs example"
         >
             {items.map(item => (
-                <BottomNavigationAction value={item.id} label={item.name} sx={isMd ? {} : {minWidth: '30dvw'}}/>
+                <Tab value={item.id} label={item.name} sx={isMd ? {} : {minWidth: '30dvw'}}/>
             ))}
-        </BottomNavigation>)
+        </Tabs>)
 }
 
 export const SubHeader: React.FC<Props> = (props) => {
@@ -91,7 +78,9 @@ export const SubHeader: React.FC<Props> = (props) => {
         display: isAuthenticated ? 'flex' : 'none'
     }
 
-    return (
+    const proxyMenuProps = props as MenuProps
+
+    return (props.tabs) ? (
         <>
             <Drawer
                 anchor={'right'}
@@ -103,7 +92,7 @@ export const SubHeader: React.FC<Props> = (props) => {
                         paddingTop: '64px'
                     }}
                 >
-                    <Menu flexDirection={'column'} display='flex'/>
+                    <Menu {...proxyMenuProps}/>
                 </Box>
             </Drawer>
             <Toolbar sx={{...ConfiguredToolbarSx, justifyContent: isMd ? 'flex' : 'flex-end'}}>
@@ -117,10 +106,9 @@ export const SubHeader: React.FC<Props> = (props) => {
                     }}>
                     <ReorderIcon/>
                 </ToggleButton>
-                <Menu display={isMd ? 'flex' : 'none'}/>
+                <Menu{...proxyMenuProps} display={isMd ? 'flex' : 'none'}/>
             </Toolbar>
         </>
 
-    )
-
+    ) : (<></>)
 }
